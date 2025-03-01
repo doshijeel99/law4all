@@ -1,0 +1,99 @@
+{
+  "breadcrumb": {
+    "games": "Games",
+    "user": "User",
+    "overview": "Overview",
+    "recent": "Recent Activities",
+    "universe": "Bandhu Universe",
+    "cognitive": "Cognitive Development",
+    "motor": "Motor Skills",
+    "emotional": "Emotional Well-being",
+    "social": "Social Interaction",
+    "game-flow": "Game Flow",
+    "settings": "Settings",
+    "profile": "Profile",
+    "chatbot": "Bandhu Chatbot",
+    "news": "News & Insights",
+    "cb": "Bot",
+    "ps": "Person",
+    "world": "Bandhu World",
+    "music-mania": "Music Mania",
+    "color-paint": "Color And Paint",
+    "number-match": "Number Match",
+    "flappy-bird": "Flappy Bird",
+    "nodulus": "Nodulus",
+    "go_back": "Exit Game",
+    "avatar-builder": "Avatar Builder",
+    "scenario-saga": "Scenario Saga",
+    "bandhu-universe": "Bandhu Universe",
+    "favourite": "Favourite",
+    "word-chain": "Word Chain",
+    "hole-in-the-wall": "Hole In The Wall",
+    "balloon-pop": "Balloon Pop"
+  },
+  "voice": {
+    "start_listening": "Start listening",
+    "stop_listening": "Stop listening",
+    "listening": "Listening",
+    "you_said": "You said",
+    "error_processing": "Error processing command"
+  },
+  "home": {
+    "signIn": "Log In",
+    "signUp": "Sign In",
+    "goToDash": "Go To Dashboard"
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "games": "Games",
+    "user": "User",
+    "overview": "Overview",
+    "reports": "Reports",
+    "game-flow": "Flow",
+    "settings": "Settings",
+    "profile": "Profile",
+    "chatbot": "Chatbot",
+    "news": "News & Insights",
+    "cb": "Bot",
+    "ps": "Person"
+  },
+  "chatbot": {
+    "title": "amigo.ai",
+    "desc": "Ask your doubts to our personalized chatbot",
+    "ask": "Ask",
+    "placeholder": "Type your message...",
+    "chatbot": "Chatbot",
+    "person": "Person",
+    "idle": "Idle",
+    "wave": "Wave",
+    "dance": "Dance",
+    "run": "Run",
+    "thumbsup": "Thumbs Up"
+  },
+  "news": {
+    "all": "All",
+    "cognitive": "Cognitive Development",
+    "motor": "Motor Skills",
+    "emotional": "Emotional Well-being",
+    "social": "Social Interaction",
+    "skills": "Skills Training",
+    "loading": "Loading news...",
+    "search_placeholder": "Search news..."
+  },
+  "game": {
+    "trending": "Trending",
+    "votes": "votes",
+    "online": "Online",
+    "visits": "Visits",
+    "play": "Play Game"
+  },
+  "universe": {
+    "avatar": "Avatar Builder",
+    "avatar_desc": "Create and customize your unique digital identity in the Bandhu Universe",
+    "start": "Start Building",
+    "learn_more": "Learn More",
+    "bandhu": "Bandhu Universe",
+    "bandhu_desc": "Explore and collaborate with others in the Bandhu Universe",
+    "exploring": "Start Exploring"
+  }
+}
