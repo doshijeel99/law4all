@@ -20,11 +20,20 @@ export const sidebarData = [
     ],
   },
   {
+    category: "law",
+    items: [
+      { title: "services", route: "/service", icon: LuUserRound },
+      { title: "legal-docs", route: "/docs", icon: LuBrain },
+      { title: "maps", route: "/maps", icon: SlPeople },
+      { title: "pathway", route: "/pathway", icon: RiFlowChart },
+      { title: "chatbot", route: "/chatbot", icon: TbMessageChatbot },
+    ],
+  },
+  {
     category: "user",
     items: [
-      { title: "game-flow", route: "/user/flow", icon: RiFlowChart },
       { title: "news", route: "/user/news", icon: FaRegNewspaper },
-      { title: "chatbot", route: "/user/chatbot", icon: TbMessageChatbot },
+      { title: "settings", route: "/user/settings", icon: IoSettingsOutline },
     ],
   },
 ];
