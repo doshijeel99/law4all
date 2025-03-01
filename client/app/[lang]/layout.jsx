@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Bandhu",
+  title: "law4all",
   description: "A project by Oreo Cookie",
 };
 

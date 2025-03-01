@@ -5,7 +5,7 @@ export const steps = [
       {
         icon: "👋",
         title: "Welcome",
-        content: "Let's get started with Bandhu!",
+        content: "Let's get started with law4all!",
         selector: "#step1",
         side: "right",
         showControls: true,
@@ -13,7 +13,7 @@ export const steps = [
       },
       {
         icon: "📝",
-        title: "Wnat to know more about Bandhu",
+        title: "Wnat to know more about law4all",
         content: "Have a chat with our chatbot Amigo.ai",
         selector: "#amigo",
         side: "right",
