@@ -1,5 +1,5 @@
 "use client";
-
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Globe, Clock, ExternalLink, Search, Loader } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
@@ -133,45 +133,68 @@ const NewsPage = () => {
   const fetchNews = async (category) => {
     setLoading(true);
     setError("");
+  
     try {
+      // Construct search terms (limit to the first 3 terms)
       const searchTerms = category.searchTerms
+        .slice(0, 3)
         .map((term) => `"${term}"`)
         .join(" OR ");
-
-      const contextTerms =
-        "AI OR technology OR digital OR innovation OR accessibility OR equity";
-
-      const finalQuery = encodeURIComponent(
-        `(${searchTerms}) AND (${contextTerms}) AND (legal OR justice OR law)`
+  
+      // Construct and encode the final query
+      let finalQuery = encodeURIComponent(
+        `(${searchTerms} AND (legal OR justice OR law))`
       );
-
-      const response = await fetch(
-        `https://gnews.io/api/v4/search?q=${finalQuery}&lang=en&country=us&max=10&sortby=relevance&apikey=${process.env.NEXT_PUBLIC_GNEWS_API_KEY}`
-      );
-
-      const data = await response.json();
-
-      if (data.errors) {
-        throw new Error(data.errors[0]);
+  
+      // Fallback query if no articles are found
+      const fallbackQuery = encodeURIComponent("legal OR justice OR law");
+  
+      // Log the API URL for debugging
+      const apiUrl = `https://gnews.io/api/v4/search?q=${finalQuery}&lang=en&country=us&max=10&sortby=relevance&apikey=${process.env.NEXT_PUBLIC_GNEWS_API_KEY}`;
+      console.log("API URL:", apiUrl);
+  
+      // Make the API request using Axios
+      let response = await axios.get(apiUrl);
+  
+      // If no articles are found, try the fallback query
+      if (response.data.articles.length === 0) {
+        console.log("No articles found. Trying fallback query...");
+        const fallbackApiUrl = `https://gnews.io/api/v4/search?q=${fallbackQuery}&lang=en&country=us&max=10&sortby=relevance&apikey=${process.env.NEXT_PUBLIC_GNEWS_API_KEY}`;
+        response = await axios.get(fallbackApiUrl);
       }
-
-      const validArticles = (data.articles || []).filter(
+  
+      // Log the API response for debugging
+      console.log("API Response:", response.data);
+  
+      // Filter valid articles
+      const validArticles = (response.data.articles || []).filter(
         (article) =>
           article.title &&
           article.description &&
           article.url &&
           article.publishedAt
       );
-
+  
+      // Remove duplicate articles based on URL
       const uniqueArticles = Array.from(
         new Map(validArticles.map((article) => [article.url, article])).values()
       );
-
+  
+      // Update state with the fetched news
       setNews(uniqueArticles);
     } catch (err) {
+      // Handle errors
       setError("Failed to fetch news. Please try again later.");
-      console.error("Error fetching news:", err);
+      console.error("Error fetching news:", err.message || err);
+  
+      // Log additional details if available
+      if (err.response) {
+        console.error("Response data:", err.response.data);
+        console.error("Response status:", err.response.status);
+        console.error("Response headers:", err.response.headers);
+      }
     } finally {
+      // Reset loading state
       setLoading(false);
     }
   };
