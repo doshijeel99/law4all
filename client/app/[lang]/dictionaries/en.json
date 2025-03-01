@@ -8,7 +8,7 @@
     "pathway": "Pathway",
     "settings": "Settings",
     "profile": "Profile",
-    "chatbot": "Bandhu Chatbot",
+    "chatbot": "law4all Chatbot",
     "news": "News & Insights",
     "cb": "Bot",
     "ps": "Person",
@@ -75,11 +75,11 @@
   },
   "universe": {
     "avatar": "Avatar Builder",
-    "avatar_desc": "Create and customize your unique digital identity in the Bandhu Universe",
+    "avatar_desc": "Create and customize your unique digital identity in the law4all Universe",
     "start": "Start Building",
     "learn_more": "Learn More",
-    "bandhu": "Bandhu Universe",
-    "bandhu_desc": "Explore and collaborate with others in the Bandhu Universe",
+    "law4all": "law4all Universe",
+    "law4all_desc": "Explore and collaborate with others in the law4all Universe",
     "exploring": "Start Exploring"
   }
 }

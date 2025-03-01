@@ -31,7 +31,7 @@ const Sidebar = () => {
           <div className="flex justify-between items-center mb-2" id="step1">
             <Image
               src={Logo}
-              alt="Bandhu Logo"
+              alt="law4all Logo"
               className="h-16 w-auto tour-logo"
             />
           </div>
