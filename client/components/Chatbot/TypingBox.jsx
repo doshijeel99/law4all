@@ -21,11 +21,8 @@ export const TypingBox = ({
   const { dict } = useLanguage();
 
   const AnimationTypes = {
-    idle: { animation: 2, name: "idle", emoji: "👤" },
-    wave: { animation: 12, name: "wave", emoji: "👋" },
-    thumbsup: { animation: 9, name: "thumbsup", emoji: "👍" },
-    dance: { animation: 0, name: "dance", emoji: "🕺" },
-    run: { animation: 6, name: "run", emoji: "🏃" },
+    idle: { animation: 6, name: "idle", emoji: "👤" },
+    wave: { animation: 8, name: "Think", emoji: "🤔" },
   };
 
   useEffect(() => {

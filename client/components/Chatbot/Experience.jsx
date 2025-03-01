@@ -61,7 +61,7 @@ const Loader = ({ progress }) => {
 const Experience = () => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const [animationNumber, setAnimationNumber] = useState(2);
+  const [animationNumber, setAnimationNumber] = useState(6);
   const { progress } = useProgress();
   const { currentBot } = useChatbot();
 
@@ -108,20 +108,20 @@ const Experience = () => {
         <spotLight position={[10, 10, 10]} intensity={0.5} />
         <Suspense fallback={<Loader progress={progress} />}>
           <Gltf
-            src="/models/doctors_office.glb"
-            position={[0.3, -0.6, 1]}
-            rotation-y={-30}
-            scale={2}
+            src="/models/office.glb"
+            position={[-0.5, -0.5, -1]} // Centered, slightly above the ground
+            rotation-y={degToRad(140)} // Rotated for a better view
+            scale={0.7}
           />
 
           <Chatbot
-            position={[-0.55, 0.49, 1.65]}
-            scale={0.35}
-            rotation-x={degToRad(5)}
-            rotation-y={degToRad(20)}
-            rotation-z={degToRad(-1)}
+            position={[-0.99, -0.5, 1.2]} // Adjusted for the scene and lawyer placement
+            scale={0.6}
+            rotation-x={degToRad(0)} // Facing forward (adjust!)
+            rotation-y={degToRad(35)}
+            rotation-z={degToRad(0)}
             animationNumber={animationNumber}
-            name="doctor"
+            name="lawyer"
           />
         </Suspense>
         <CameraManager />

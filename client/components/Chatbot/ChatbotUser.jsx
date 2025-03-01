@@ -18,9 +18,9 @@ const Chatbot = ({ animationNumber, name, ...props }) => {
         actionRef.current.fadeOut(0.2);
       }
 
-      // const action = mixer.current.clipAction(animations[animationNumber]);
-      // action.reset().fadeIn(0.2).play();
-      // actionRef.current = action;
+      const action = mixer.current.clipAction(animations[animationNumber]);
+      action.reset().fadeIn(0.2).play();
+      actionRef.current = action;
 
       if (name === "person") {
         action.setLoop(LoopOnce, 1);
