@@ -101,7 +101,7 @@ export const TypingBox = ({
   return (
     <div className="z-10 w-[620px] flex space-y-6 flex-col bg-gradient-to-tr from-slate-300/30 via-gray-400/30 to-slate-600-400/30 p-4 backdrop-blur-md rounded-xl border-slate-100/30 border">
       <div>
-        <Image src={Logo} alt="bandhu" className="h-7 w-auto" />
+        <Image src={Logo} alt="law4all" className="h-7 w-auto" />
         <p className="text-purple-100 font-semibold">{dict?.chatbot?.desc}</p>
       </div>
 
