@@ -41,7 +41,7 @@ const MessageBox = ({ message }) => {
                     <div className="flex items-center gap-2 mb-2">
                       <Badge
                         variant="secondary"
-                        className="bg-purple-500/20 text-purple-100 px-3 py-1 text-xl"
+                        className="bg-purple-500/20 text-purple-700 px-3 py-1 text-xl"
                       >
                         {gameName}
                       </Badge>
@@ -135,7 +135,7 @@ const MessageBox = ({ message }) => {
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="font-bold text-lg text-limeGreen-900 leading-relaxed whitespace-pre-line tracking-wide hover:text-purple-700 transition-colors duration-300 p-2 rounded-lg hover:bg-purple-500/5"
+        className="font-bold text-lg text-limeGreen-900 leading-relaxed whitespace-pre-line tracking-wide hover:text-white transition-colors duration-300 p-2 rounded-lg hover:bg-purple-500/5"
       >
         {text}
       </motion.p>
@@ -149,7 +149,7 @@ const MessageBox = ({ message }) => {
       transition={{ duration: 0.3 }}
       className="z-10 h-[500px] w-[900px]"
     >
-      <Card className="h-full bg-gradient-to-tr from-slate-700/30 via-gray-800/30 to-slate-700-500/30 backdrop-blur-md border-white/10">
+      <Card className="h-full bg-gradient-to-tr from-white via-white/70 to-white/70 backdrop-blur-md border-white/10">
         {message === "" ? (
           <div className="h-full w-full flex justify-center items-center">
             <motion.div
@@ -163,7 +163,7 @@ const MessageBox = ({ message }) => {
                 repeatType: "reverse",
               }}
             >
-              <Image src={Logo} alt="amigo.ai" className="h-20 w-auto" />
+              <Image src={Logo} alt="amigo.ai" className="h-56 w-auto" />
             </motion.div>
           </div>
         ) : (

@@ -80,7 +80,7 @@ const ChatComponent = () => {
       className="flex flex-col h-full w-1/3 bg-white border-2 border-purple-100 rounded-xl shadow-xl overflow-hidden"
     >
       <div className="px-4 py-3 flex justify-between items-center font-bold text-lg text-center border-b border-purple-100">
-        <Image src={Logo} alt="Logo" className="h-8 w-auto" />
+        <Image src={Logo} alt="Logo" className="h-12 w-auto" />
 
         <span className="flex-center gap-x-5">
           <BsSearch className="h-5 w-auto hover:cursor-pointer" />

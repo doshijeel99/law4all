@@ -32,7 +32,7 @@ const Sidebar = () => {
             <Image
               src={Logo}
               alt="Bandhu Logo"
-              className="h-7 w-auto mb-5 tour-logo"
+              className="h-16 w-auto tour-logo"
             />
           </div>
 

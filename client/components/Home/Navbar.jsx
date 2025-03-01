@@ -22,7 +22,7 @@ const Navbar = () => {
             <Image
               src={Logo}
               alt="Demo"
-              className="h-12 w-auto transition-opacity duration-300 hover:opacity-80"
+              className="h-22 w-auto transition-opacity duration-300 hover:opacity-80"
             />
           </Link>
 

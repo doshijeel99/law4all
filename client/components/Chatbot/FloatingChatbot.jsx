@@ -24,7 +24,7 @@ const FloatingChatbot = () => {
         >
           <div className="absolute top-0 h-14 p-3 px-5 bg-transparent rounded-t-lg flex justify-between items-center z-50 w-full">
             <span className="font-semibold flex-row-center gap-x-2">
-              <Image src={Logo} alt="amigo.ai" className="h-8 w-auto" />{" "}
+              <Image src={Logo} alt="amigo.ai" className="h-16 w-auto" />{" "}
             </span>
             <div className="flex gap-2">
               <Button
