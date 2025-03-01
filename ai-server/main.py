@@ -1,5 +1,5 @@
 # main.py
-from fastapi import FastAPI, Form, HTTPException, Query
+from fastapi import FastAPI,File, UploadFile, Form, HTTPException, Query
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Dict, List, Optional
@@ -9,12 +9,15 @@ from services.gemini_game_flow import get_gemini_response
 from services.wellness import process_input
 from services.scenariosaga import ScenarioSaga
 import base64
-from pydantic import BaseModel
 from typing import List, Dict
 from difflib import SequenceMatcher
 import json
 import logging
 from itertools import tee, islice
+import os
+import io
+import PyPDF2
+import aiohttp
 
 load_dotenv()
 
@@ -40,6 +43,9 @@ class GameResponse(BaseModel):
 class OptionChoice(BaseModel):
     option_index: int
 
+class AnalysisResponse(BaseModel):
+    summary: str
+    final_analysis: str
 
 # JSON file path
 JSON_FILE_PATH = "updated_docdata.json"  # Ensure this matches your actual file location
@@ -47,6 +53,9 @@ JSON_FILE_PATH = "updated_docdata.json"  # Ensure this matches your actual file 
 # S3 Bucket Configuration
 BUCKET_NAME = "legal-docs-sih"
 REGION_NAME = "ap-south-1"
+
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
 
 # Input model
 class QueryRequest(BaseModel):
@@ -145,6 +154,69 @@ def find_relevant_documents(query: str, metadata: List[Dict], threshold: float =
 def generate_public_url(file_key: str):
     return f"https://{BUCKET_NAME}.s3.{REGION_NAME}.amazonaws.com/{file_key}"
 
+def extract_text(file_bytes: bytes, filename: str) -> str:
+    """
+    Extracts text from a file. Uses PyPDF2 for PDFs and UTF-8 decoding for text files.
+    """
+    if filename.lower().endswith('.pdf'):
+        try:
+            pdf_reader = PyPDF2.PdfReader(io.BytesIO(file_bytes))
+            text = "\n".join([page.extract_text() or "" for page in pdf_reader.pages])
+            return text.strip() if text else "Error: Unable to extract text."
+        except Exception as e:
+            return f"Error reading PDF: {e}"
+    else:
+        try:
+            return file_bytes.decode("utf-8")
+        except Exception as e:
+            return f"Error decoding file: {e}"
+
+def summarize_text(text: str) -> str:
+    """Returns a basic summary by truncating to the first 100 words."""
+    words = text.split()
+    return " ".join(words[:100]) + "..." if len(words) > 100 else text
+
+def build_prompt(summary: str) -> str:
+    """Constructs the prompt for the LLM using only the document summary."""
+    prompt = f"""Legal Document Analysis:
+
+Document Summary:
+{summary}
+
+Task: Provide a plain-language explanation of the legal document. Focus on clarity and conciseness without repeating the summary.
+"""
+    return prompt
+
+async def call_groq_api(prompt: str) -> str:
+    """Calls the Groq API with the legal analysis prompt."""
+    headers = {
+        "Authorization": f"Bearer {GROQ_API_KEY}",
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+    }
+    payload = {
+        "model": "llama3-70b-8192",
+        "messages": [
+            {"role": "system", "content": "You are an expert legal assistant who provides clear, detailed, and non-redundant explanations."},
+            {"role": "user", "content": prompt}
+        ],
+        "max_tokens": 1024,
+        "temperature": 0.6
+    }
+
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.post(GROQ_API_URL, headers=headers, json=payload) as resp:
+                response_json = await resp.json()
+                
+                # 🔥 DEBUG PRINT
+                print("Groq API Full Response:", response_json)
+
+                return response_json.get("choices", [{}])[0].get("message", {}).get("content", "No output generated.")
+    except Exception as e:
+        return f"Error calling Groq API: {e}"
+
+
 
 @app.post("/ai-game-path")
 async def ai_financial_path(
@@ -179,3 +251,15 @@ async def get_documents(request: QueryRequest):
     # Generate public URLs for matching documents
     links = [generate_public_url(filename) for filename in matches]
     return {"documents": links}
+
+@app.post("/analyze", response_model=AnalysisResponse)
+async def analyze_document(file: UploadFile = File(...)):
+    """Analyzes a legal document and provides a summarized plain-language explanation."""
+    file_bytes = await file.read()
+    text = extract_text(file_bytes, file.filename)
+    
+    summary = summarize_text(text)
+    prompt = build_prompt(summary)
+    final_analysis = await call_groq_api(prompt)
+    
+    return AnalysisResponse(summary=summary, final_analysis=final_analysis)
