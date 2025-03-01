@@ -1,142 +1,191 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import DocumentCard from '@/components/DocumentCard';
-import DocumentPreview from '@/components/DocumentPreview';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
+import DocumentCard from "@/components/Document/DocumentCard";
+import DocumentPreview from "@/components/Document/DocumentPreview";
+import { Loader2, Search } from "lucide-react";
 
-export default function Home() {
+export default function DocumentSearch() {
   const router = useRouter();
-  const [documents, setDocuments] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [document, setDocument] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [hoveredDocument, setHoveredDocument] = useState(null);
-  const [categories, setCategories] = useState(['All']);
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const [searchQuery, setSearchQuery] = useState('');
+  console.log(document);
 
-  useEffect(() => {
-    const fetchDocuments = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch('/api/documents');
-        if (!response.ok) {
-          throw new Error('Failed to fetch documents');
-        }
-        const data = await response.json();
-        setDocuments(data);
-        
-        // Extract unique categories
-        const uniqueCategories = ['All', ...new Set(data.map(doc => doc.category))];
-        setCategories(uniqueCategories);
-      } catch (err) {
-        setError('Failed to load documents. Please try again later.');
-        console.error(err);
-      } finally {
-        setLoading(false);
+  const handleSearch = async (e) => {
+    e.preventDefault();
+
+    if (!searchQuery.trim()) {
+      setError("Please enter a document name to search");
+      return;
+    }
+
+    try {
+      setLoading(true);
+      setError(null);
+      setDocument(null);
+
+      const response = await fetch(`http://127.0.0.1:8000/get-documents`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ query: searchQuery.trim() }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch document");
       }
-    };
-    
-    fetchDocuments();
-  }, []);
 
-  const filteredDocuments = documents.filter(doc => {
-    const matchesCategory = selectedCategory === 'All' || doc.category === selectedCategory;
-    const matchesSearch = doc.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          doc.description.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
+      const data = await response.json();
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <Loader2 className="h-8 w-8 animate-spin text-primary" />
-      </div>
-    );
-  }
+      if (data.documents) {
+        const url = data.documents[0];
 
-  if (error) {
-    return (
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded">
-          <p className="text-red-700">{error}</p>
-        </div>
-      </div>
-    );
-  }
+        // Extract filename from URL
+        const filename = url.split("/").pop();
+        // Remove file extension
+        const title = filename.split(".")[0].replace(/-/g, " ");
+        // Extract category from URL path
+        const pathParts = url.split("/");
+        const category = pathParts[pathParts.length - 2] || "Uncategorized";
+
+        const transformedDoc = {
+          id: `doc-search-result`,
+          title: formatTitle(title),
+          description: `${formatTitle(title)} document`,
+          category: formatTitle(category),
+          url: url,
+          fileType: getFileType(url),
+        };
+
+        setDocument(transformedDoc);
+      } else {
+        setError("No document found matching your search query");
+      }
+    } catch (err) {
+      setError("Failed to search for document. Please try again later.");
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Helper function to format titles
+  const formatTitle = (str) => {
+    return str
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
+
+  // Helper function to get file type from URL
+  const getFileType = (url) => {
+    const extension = url.split(".").pop().toLowerCase();
+    return extension;
+  };
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <Card className="mb-8">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold">Legal Document Library</CardTitle>
+          <CardTitle className="text-2xl font-bold">Document Search</CardTitle>
+          <CardDescription>
+            Enter a document name to search in our legal document library
+          </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
-            <div className="w-full md:w-1/2">
+          <form
+            onSubmit={handleSearch}
+            className="flex flex-col md:flex-row gap-4"
+          >
+            <div className="w-full md:flex-grow">
               <Input
                 type="text"
-                placeholder="Search documents..."
+                placeholder="Search for documents (e.g., adoption-deed, power-of-attorney)"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full"
               />
             </div>
-            <div className="w-full md:w-1/3">
-              <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Filter by category" />
-                </SelectTrigger>
-                <SelectContent>
-                  {categories.map(category => (
-                    <SelectItem key={category} value={category}>
-                      {category}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
+            <Button
+              type="submit"
+              className="w-full md:w-auto"
+              disabled={loading}
+            >
+              {loading ? (
+                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+              ) : (
+                <Search className="h-4 w-4 mr-2" />
+              )}
+              Search
+            </Button>
+          </form>
         </CardContent>
       </Card>
 
-      <div className="flex flex-col lg:flex-row gap-8">
-        <div className="w-full lg:w-2/3">
-          {filteredDocuments.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredDocuments.map(document => (
-                <DocumentCard
-                  key={document.id}
-                  document={document}
-                  onMouseEnter={() => setHoveredDocument(document)}
-                  onMouseLeave={() => setHoveredDocument(null)}
-                  onClick={() => router.push(`/documents/${document.id}`)}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="bg-white rounded-lg shadow-md p-8 text-center">
-              <p className="text-gray-500">No documents match your search criteria.</p>
-            </div>
-          )}
+      {error && (
+        <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded mb-8">
+          <p className="text-red-700">{error}</p>
         </div>
-        
-        <div className="w-full lg:w-1/3 lg:sticky lg:top-8 h-fit">
-          {hoveredDocument ? (
-            <DocumentPreview document={hoveredDocument} />
-          ) : (
-            <Card className="bg-gray-50">
-              <CardContent className="p-8 text-center">
-                <p className="text-gray-500">Hover over a document to see preview</p>
-              </CardContent>
-            </Card>
-          )}
+      )}
+
+      {loading && (
+        <div className="flex justify-center items-center p-12">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
         </div>
-      </div>
+      )}
+
+      {document && (
+        <div className="flex flex-col lg:flex-row gap-8">
+          <div className="w-full lg:w-1/2">
+            <h2 className="text-xl font-semibold mb-4">Search Result</h2>
+            <DocumentCard
+              key={document.id}
+              document={document}
+              onClick={() => {
+                if (document.url) {
+                  window.open(document.url, "_blank");
+                } else {
+                  router.push(`/en/docs/${document.id}`);
+                }
+              }}
+            />
+          </div>
+
+          <div className="w-full lg:w-1/2">
+            <h2 className="text-xl font-semibold mb-4">Document Preview</h2>
+            <DocumentPreview document={document} />
+          </div>
+        </div>
+      )}
+
+      {!loading && !document && !error && (
+        <Card className="bg-gray-50">
+          <CardContent className="p-12 text-center">
+            <Search className="h-12 w-12 mx-auto mb-4 text-gray-400" />
+            <p className="text-gray-500">
+              Enter a document name above to search in our legal document
+              library
+            </p>
+            <p className="text-gray-400 text-sm mt-2">
+              Try searching for common legal documents like "adoption-deed",
+              "power-of-attorney", etc.
+            </p>
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 }

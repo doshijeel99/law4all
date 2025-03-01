@@ -1,14 +1,3 @@
-# main.py
-from fastapi import FastAPI, Form, HTTPException, Query
-from fastapi.responses import JSONResponse
-from fastapi.middleware.cors import CORSMiddleware
-from typing import Dict, List, Optional
-from dotenv import load_dotenv
-from pydantic import BaseModel
-from services.gemini_game_flow import get_gemini_response
-from services.wellness import process_input
-from services.scenariosaga import ScenarioSaga
-import base64
 from pydantic import BaseModel
 from typing import List, Dict
 from difflib import SequenceMatcher
@@ -16,33 +5,8 @@ import json
 import logging
 from itertools import tee, islice
 
-load_dotenv()
-
-app = FastAPI()
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-class Character(BaseModel):
-    name: str
-    age: int
-
-class GameResponse(BaseModel):
-    scenario: str
-    image: Optional[str] = None
-    options: List[str]
-
-class OptionChoice(BaseModel):
-    option_index: int
-
-
 # JSON file path
-JSON_FILE_PATH = "updated_docdata.json"  # Ensure this matches your actual file location
+JSON_FILE_PATH = "/code/data/updated_docdata.json"  # Ensure this matches your actual file location
 
 # S3 Bucket Configuration
 BUCKET_NAME = "legal-docs-sih"
@@ -144,38 +108,3 @@ def find_relevant_documents(query: str, metadata: List[Dict], threshold: float =
 # Function to generate public URL for a file
 def generate_public_url(file_key: str):
     return f"https://{BUCKET_NAME}.s3.{REGION_NAME}.amazonaws.com/{file_key}"
-
-
-@app.post("/ai-game-path")
-async def ai_financial_path(
-    input: str = Form(...),
-    risk: Optional[str] = Form("conservative")
-):
-    """Generates an AI-based financial planning response."""
-    try:
-        response = get_gemini_response(input, risk)  
-        return JSONResponse(content=response, status_code=200)
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Something went wrong: {str(e)}")
-
-
-@app.post("/ai-chatbot")
-async def ai_chatbot(input: str = Form(...), type: str = Form("chatbot")):
-    response = process_input(input, type)  # Await the response
-
-    return response
-
-@app.post("/get-documents")
-async def get_documents(request: QueryRequest):
-    query = request.query.strip()
-    if not query:
-        raise HTTPException(status_code=400, detail="Query string cannot be empty.")
-
-    # Find relevant documents
-    matches = find_relevant_documents(query, DOCUMENT_METADATA)
-    if not matches:
-        raise HTTPException(status_code=404, detail="No relevant documents found.")
-
-    # Generate public URLs for matching documents
-    links = [generate_public_url(filename) for filename in matches]
-    return {"documents": links}

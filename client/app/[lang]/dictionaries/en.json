@@ -12,20 +12,8 @@
     "news": "News & Insights",
     "cb": "Bot",
     "ps": "Person",
-    "world": "Bandhu World",
-    "music-mania": "Music Mania",
-    "color-paint": "Color And Paint",
-    "number-match": "Number Match",
-    "flappy-bird": "Flappy Bird",
-    "nodulus": "Nodulus",
-    "go_back": "Exit Game",
-    "avatar-builder": "Avatar Builder",
-    "scenario-saga": "Scenario Saga",
-    "bandhu-universe": "Bandhu Universe",
-    "favourite": "Favourite",
-    "word-chain": "Word Chain",
-    "hole-in-the-wall": "Hole In The Wall",
-    "balloon-pop": "Balloon Pop"
+    "docs": "Legal Documents",
+    "service": "Services"
   },
   "voice": {
     "start_listening": "Start listening",
