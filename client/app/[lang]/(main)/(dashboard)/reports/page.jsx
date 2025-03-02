@@ -13,8 +13,10 @@ import {
 import axios from "axios";
 import { Button } from "@/components/ui/Button";
 import jsPDF from "jspdf";
+import { useLanguage } from "@/context/LanguageContext";
 
 const LegalDocumenbluealyzer = () => {
+  const { dict } = useLanguage();
   const [file, setFile] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
   const [analysis, sebluealysis] = useState(null);
@@ -247,7 +249,7 @@ const LegalDocumenbluealyzer = () => {
         {!analysis && (
           <div className="text-center mb-10">
             <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              Legal Document Analysis
+              {dict?.reports?.title}
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Upload your legal documents to get plain-language explanations and

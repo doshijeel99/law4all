@@ -16,6 +16,9 @@
     "maps": "Areas of Legal Clinics",
     "reports": "Legal Analytics"
   },
+  "reports": {
+    "title": "Legal Document Analysis"
+  },
   "voice": {
     "start_listening": "Start listening",
     "stop_listening": "Stop listening",
