@@ -36,12 +36,12 @@ const MessageBox = ({ message }) => {
                 whileHover={{ scale: 1.01 }}
                 className="group"
               >
-                <Card className="bg-purple-800 border-purple-500 hover:bg-purple-900 transition-all duration-300">
+                <Card className="bg-blue-800 border-blue-500 hover:bg-blue-900 transition-all duration-300">
                   <CardContent className="p-4">
                     <div className="flex items-center gap-2 mb-2">
                       <Badge
                         variant="secondary"
-                        className="bg-purple-500/20 text-purple-700 px-3 py-1 text-xl"
+                        className="bg-blue-500/20 text-blue-700 px-3 py-1 text-xl"
                       >
                         {gameName}
                       </Badge>
@@ -86,9 +86,9 @@ const MessageBox = ({ message }) => {
                 hidden: { x: -20, opacity: 0 },
                 visible: { x: 0, opacity: 1 },
               }}
-              className="flex gap-2 text-purple-600 hover:bg-white/10 p-3 rounded-lg transition-all"
+              className="flex gap-2 text-blue-600 hover:bg-white/10 p-3 rounded-lg transition-all"
             >
-              <span className="text-purple-500">•</span>
+              <span className="text-blue-500">•</span>
               <span>{point.trim()}</span>
             </motion.li>
           ))}
@@ -135,7 +135,7 @@ const MessageBox = ({ message }) => {
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="font-bold text-lg text-limeGreen-900 leading-relaxed whitespace-pre-line tracking-wide hover:text-white transition-colors duration-300 p-2 rounded-lg hover:bg-purple-500/5"
+        className="font-bold text-lg text-limeGreen-900 leading-relaxed whitespace-pre-line tracking-wide hover:text-white transition-colors duration-300 p-2 rounded-lg hover:bg-blue-500/5"
       >
         {text}
       </motion.p>

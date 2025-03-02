@@ -14,7 +14,7 @@ export async function POST(req) {
     );
   }
 
-  // Create new Svix instance with secret
+  // Create new Svix insbluece with secret
   const wh = new Webhook(WEBHOOK_SECRET);
 
   // Get headers

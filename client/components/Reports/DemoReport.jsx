@@ -8,12 +8,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import {
-  TrendingUp,
-  AlertTriangle,
-  DollarSign,
-  BarChart2,
-} from "lucide-react";
+import { TrendingUp, AlertTriangle, DollarSign, BarChart2 } from "lucide-react";
 
 // Sample Data
 const stockRecommendations = [
@@ -63,7 +58,7 @@ const CustomCard = ({ title, icon: Icon, children }) => (
   <div className="bg-white rounded-lg shadow-md overflow-hidden">
     <div className="px-6 py-4 border-b border-gray-200">
       <div className="flex items-center">
-        {Icon && <Icon className="mr-2 text-purple-600" size={20} />}
+        {Icon && <Icon className="mr-2 text-blue-600" size={20} />}
         <h2 className="text-xl font-semibold text-gray-800">{title}</h2>
       </div>
     </div>
@@ -105,9 +100,9 @@ const DemoReport = () => {
           sapiente, dolorem harum ea esse. Incidunt!
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="p-4 bg-purple-50 rounded-lg">
+          <div className="p-4 bg-blue-50 rounded-lg">
             <h3 className="font-semibold mb-2">Sector Growth</h3>
-            <p className="text-2xl font-bold text-purple-600">12% YoY</p>
+            <p className="text-2xl font-bold text-blue-600">12% YoY</p>
             <p className="text-sm text-gray-600">Q3 2023</p>
           </div>
           <div className="p-4 bg-blue-50 rounded-lg">

@@ -22,7 +22,7 @@ export default function DocumentCard({
       case "xlsx":
         return <FileSpreadsheet className="h-8 w-8 text-green-500" />;
       default:
-        return <FileText className="h-8 w-8 text-amber-500" />;
+        return <FileText className="h-8 w-8 text-blue-500" />;
     }
   };
 

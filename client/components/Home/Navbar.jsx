@@ -15,7 +15,7 @@ const Navbar = () => {
   // const { theme, setTheme } = useTheme();
 
   return (
-    <nav className="z-20 opacity-75 w-full bg-cream dark:bg-tan-800 dark:text-cream shadow-lg fixed top-0 transition-colors duration-300">
+    <nav className="z-20 opacity-75 w-full bg-blue dark:bg-blue-800 dark:text-blue shadow-lg fixed top-0 transition-colors duration-300">
       <div className="mx-auto px-10">
         <div className="flex justify-between items-center h-16">
           <Link href={`/${currentLang}`} className="flex items-center">
@@ -33,7 +33,7 @@ const Navbar = () => {
               {isSignedIn ? (
                 <Link
                   href={`/${currentLang}/overview`}
-                  className="px-4 py-2 rounded-md bg-orange hover:bg-orange-400 text-white font-semibold dark:bg-orange-700 dark:hover:bg-orange-600 transition-colors duration-200"
+                  className="px-4 py-2 rounded-md bg-cream hover:bg-cream-400 text-white font-semibold dark:bg-cream-700 dark:hover:bg-cream-600 transition-colors duration-200"
                 >
                   {dict?.home?.goToDash}
                 </Link>
@@ -41,13 +41,13 @@ const Navbar = () => {
                 <>
                   <Link
                     href={`/${currentLang}/sign-in`}
-                    className="px-4 py-2 rounded-md bg-orange hover:bg-orange-400 text-white font-semibold dark:bg-orange-700 dark:hover:bg-orange-600 transition-colors duration-200"
+                    className="px-4 py-2 rounded-md bg-cream hover:bg-cream-400 text-white font-semibold dark:bg-cream-700 dark:hover:bg-cream-600 transition-colors duration-200"
                   >
                     {dict?.home?.signIn}
                   </Link>
                   <Link
                     href={`/${currentLang}/sign-up`}
-                    className="px-4 py-2 rounded-md border border-tan-400 bg-tan bg-opacity-50 hover:bg-tan-200 text-tan-900 font-semibold dark:border-tan-600 dark:bg-tan-700 dark:text-cream dark:hover:bg-tan-600 transition-colors duration-200"
+                    className="px-4 py-2 rounded-md border border-blue-400 bg-blue bg-opacity-50 hover:bg-blue-200 text-blue-900 font-semibold dark:border-blue-600 dark:bg-blue-700 dark:text-blue dark:hover:bg-blue-600 transition-colors duration-200"
                   >
                     {dict?.home?.signUp}
                   </Link>

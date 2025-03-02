@@ -77,9 +77,9 @@ const ChatComponent = () => {
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.3 }}
-      className="flex flex-col h-full w-1/3 bg-white border-2 border-purple-100 rounded-xl shadow-xl overflow-hidden"
+      className="flex flex-col h-full w-1/3 bg-white border-2 border-blue-100 rounded-xl shadow-xl overflow-hidden"
     >
-      <div className="px-4 py-3 flex justify-between items-center font-bold text-lg text-center border-b border-purple-100">
+      <div className="px-4 py-3 flex justify-between items-center font-bold text-lg text-center border-b border-blue-100">
         <Image src={Logo} alt="Logo" className="h-12 w-auto" />
 
         <span className="flex-center gap-x-5">
@@ -106,7 +106,7 @@ const ChatComponent = () => {
                 className={`h-8 w-8 ${
                   msg.senderId === currentUserId
                     ? "text-limeGreen-600"
-                    : "text-purple-600"
+                    : "text-blue-600"
                 }`}
               />
               <motion.div
@@ -114,7 +114,7 @@ const ChatComponent = () => {
                 className={`max-w-[80%] p-3 rounded-xl shadow-md border ${
                   msg.senderId === currentUserId
                     ? "bg-white text-limeGreen-900 border-limeGreen-100"
-                    : "bg-purple-100 text-purple-900 border-purple-100"
+                    : "bg-blue-100 text-blue-900 border-blue-100"
                 }`}
               >
                 <div className="font-bold text-md mb-1">{msg?.senderName}</div>
@@ -126,20 +126,20 @@ const ChatComponent = () => {
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="p-4 bg-white border-t border-purple-100 flex items-center space-x-2">
+      <div className="p-4 bg-white border-t border-blue-100 flex items-center space-x-2">
         <Input
           type="text"
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
           onKeyPress={handleKeyPress}
-          className="h-10 flex-1 p-3 bg-white text-purple-900 border border-purple-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-300"
+          className="h-10 flex-1 p-3 bg-white text-blue-900 border border-blue-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
           placeholder="Type a message..."
         />
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={sendMessage}
-          className="p-1.5 border border-purple-200 text-purple-500 hover:text-white rounded-lg hover:bg-purple-500 transition-colors"
+          className="p-1.5 border border-blue-200 text-blue-500 hover:text-white rounded-lg hover:bg-blue-500 transition-colors"
         >
           <IoIosSend className="h-6 w-auto" />
         </motion.button>

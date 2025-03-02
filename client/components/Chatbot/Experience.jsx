@@ -61,7 +61,7 @@ const Loader = ({ progress }) => {
 const Experience = () => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const [animationNumber, setAnimationNumber] = useState(6);
+  const [animationNumber, seblueimationNumber] = useState(6);
   const { progress } = useProgress();
   const { currentBot } = useChatbot();
 
@@ -76,7 +76,7 @@ const Experience = () => {
           setMessage={setMessage}
           loading={loading}
           setLoading={setLoading}
-          setAnimationNumber={setAnimationNumber}
+          seblueimationNumber={seblueimationNumber}
           currentBot={currentBot}
         />
       </div>

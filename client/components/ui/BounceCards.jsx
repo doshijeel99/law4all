@@ -77,8 +77,8 @@ export default function BounceCards({
         const offsetX = i < hoveredIdx ? -130 : 130;
         const pushedTransform = getPushedTransform(baseTransform, offsetX);
 
-        const distance = Math.abs(hoveredIdx - i);
-        const delay = distance * 0.05;
+        const disbluece = Math.abs(hoveredIdx - i);
+        const delay = disbluece * 0.05;
 
         gsap.to(selector, {
           transform: pushedTransform,

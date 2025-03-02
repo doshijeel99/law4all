@@ -19,10 +19,10 @@ export default function Page() {
             card: "rounded-xl",
             headerTitle: "text-2xl font-bold",
             headerSubtitle: "text-gray-500",
-            formButtonPrimary: "bg-purple-600 hover:bg-purple-700 w-full",
+            formButtonPrimary: "bg-blue-600 hover:bg-blue-700 w-full",
             socialButtonsBlockButton: "w-full",
             footerActionText: "text-center",
-            footerActionLink: "text-purple-600 hover:text-purple-700 ml-1",
+            footerActionLink: "text-blue-600 hover:text-blue-700 ml-1",
           },
         }}
       />

@@ -1,10 +1,7 @@
 import { RiHome3Line, RiEmotionLaughLine, RiFlowChart } from "react-icons/ri";
-import { RxDashboard } from "react-icons/rx";
-import {
-  TbUniverse,
-  TbMessageChatbot,
-  TbReportAnalytics,
-} from "react-icons/tb";
+import { SiGoogledocs } from "react-icons/si";
+
+import { TbMessageChatbot, TbReportAnalytics } from "react-icons/tb";
 
 import { LuBrain, LuUserRound } from "react-icons/lu";
 import { FaGears, FaRegNewspaper } from "react-icons/fa6";
@@ -23,7 +20,7 @@ export const sidebarData = [
     category: "law",
     items: [
       { title: "services", route: "/service", icon: LuUserRound },
-      { title: "legal-docs", route: "/docs", icon: LuBrain },
+      { title: "legal-docs", route: "/docs", icon: SiGoogledocs },
       { title: "maps", route: "/maps", icon: SlPeople },
       { title: "pathway", route: "/pathway", icon: RiFlowChart },
       { title: "chatbot", route: "/chatbot", icon: TbMessageChatbot },

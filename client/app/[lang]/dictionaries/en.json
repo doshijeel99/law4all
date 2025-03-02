@@ -4,7 +4,7 @@
     "user": "User",
     "overview": "Overview",
     "recent": "Recent Activities",
-    "services": "Services",
+    "services": "Legal Services",
     "pathway": "Law RoadMap",
     "settings": "Settings",
     "profile": "Profile",
@@ -13,7 +13,7 @@
     "cb": "Bot",
     "ps": "Person",
     "docs": "Legal Documents",
-    "service": "Services"
+    "service": "Legal Services"
   },
   "voice": {
     "start_listening": "Start listening",
@@ -51,9 +51,7 @@
     "chatbot": "Chatbot",
     "person": "Person",
     "idle": "Idle",
-    "wave": "Wave",
-    "dance": "Dance",
-    "run": "Run",
+    "think": "Thinking...",
     "thumbsup": "Thumbs Up"
   },
   "news": {

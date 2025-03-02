@@ -1,36 +1,63 @@
-import { model, Schema, models } from "mongoose";
+import { model, Schema } from "mongoose";
 
 const UserSchema = new Schema(
   {
-    clerkId: { type: String, required: true, unique: true },
-    fullName: { type: String, required: true },
-    email: { type: String, required: true },
-    userName: { type: String, required: true },
-    profileImageUrl: { type: String },
-    age: { type: Number },
-    phoneNumber: { type: String, default: "4242424242" },
-    location: { type: String, default: "Mumbai, Maharashtra" },
-    legalNeeds: {
-      type: [String], // Example: ["immigration", "employment law", "family law"]
-      default: [],
+    personalDetails: {
+      firstName: { type: String, required: true },
+      lastName: { type: String, required: true },
+      email: { type: String, required: true, unique: true },
+      phone: { type: String, default: "+1234567890" },
+      dateOfBirth: { type: Date },
+      gender: { type: String, enum: ["Male", "Female", "Other"] },
+      occupation: { type: String },
+      nationality: { type: String },
     },
-    legalNeeds: {
-      type: [String], // Example: ["immigration", "employment law", "family law"]
-      default: [],
+    address: {
+      street: { type: String },
+      city: { type: String },
+      state: { type: String },
+      postalCode: { type: String },
+      country: { type: String },
+      googleMapLink: { type: String },
     },
-    activeCases: [
+    previousCaseHistory: [
       {
-        caseId: String,
-        caseType: String, // Example: "Employment Dispute", "Criminal Defense"
-        status: { type: String, enum: ["open", "in progress", "closed"], default: "open" },
-        lastUpdated: { type: Date, default: Date.now },
+        caseId: { type: String, required: true },
+        caseType: { type: String, required: true },
+        caseDescription: { type: String },
+        filingDate: { type: Date },
+        status: {
+          type: String,
+          enum: ["Open", "In Progress", "Closed"],
+          default: "Open",
+        },
+        outcome: { type: String },
+        lawyer: {
+          name: { type: String },
+          firm: { type: String },
+        },
+        documents: [
+          {
+            documentType: { type: String },
+            documentId: { type: String },
+            uploadDate: { type: Date },
+            fileUrl: { type: String },
+          },
+        ],
       },
     ],
-    
+    legalDocuments: [
+      {
+        documentType: { type: String },
+        documentId: { type: String },
+        uploadDate: { type: Date },
+        fileUrl: { type: String },
+      },
+    ],
   },
-  { timestamps: true }
+  { timestamps: true } // Automatically adds `createdAt` and `updatedAt` fields
 );
 
-const User = models.User || model("User", UserSchema);
+const User = model("User", UserSchema);
 
 export default User;

@@ -22,7 +22,7 @@ const CATEGORIES = [
     searchTerms: [
       "artificial intelligence legal services",
       "machine learning legal aid",
-      "automated legal assistance",
+      "automated legal assisbluece",
       "legal chatbots",
       "predictive legal analytics",
       "AI document review",
@@ -51,7 +51,7 @@ const CATEGORIES = [
       "low-income legal services",
       "indigenous legal rights",
       "disability legal advocacy",
-      "immigrant legal assistance",
+      "immigrant legal assisbluece",
       "language barriers legal system",
     ],
   },
@@ -65,7 +65,7 @@ const CATEGORIES = [
       "community legal clinics technology",
       "virtual legal services",
       "mobile legal applications",
-      "remote legal assistance",
+      "remote legal assisbluece",
     ],
   },
   {
@@ -138,11 +138,10 @@ const NewsPage = () => {
         .map((term) => `"${term}"`)
         .join(" OR ");
 
-      const contextTerms =
-        "AI OR technology OR digital OR innovation OR accessibility OR equity";
+      const contextTerms = "AI OR legal OR justice OR technology";
 
       const finalQuery = encodeURIComponent(
-        `(${searchTerms}) AND (${contextTerms}) AND (legal OR justice OR law)`
+        `(${searchTerms}) AND (${contextTerms})`
       );
 
       const response = await fetch(
@@ -150,6 +149,7 @@ const NewsPage = () => {
       );
 
       const data = await response.json();
+      console.log("News API Response:", data);
 
       if (data.errors) {
         throw new Error(data.errors[0]);
@@ -217,7 +217,7 @@ const NewsPage = () => {
                 }
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 dark:border-purple-700 bg-white dark:bg-gray-800 text-purple-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 dark:border-blue-700 bg-white dark:bg-gray-800 text-blue-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
           </div>
@@ -230,7 +230,7 @@ const NewsPage = () => {
               onClick={() => setSelectedCategory(category)}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${
                 selectedCategory.id === category.id
-                  ? "bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400"
+                  ? "bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400"
                   : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
               }`}
             >
@@ -241,7 +241,7 @@ const NewsPage = () => {
 
         {loading && (
           <div className="flex items-center justify-center py-12">
-            <Loader className="h-8 w-8 text-purple-600 animate-spin" />
+            <Loader className="h-8 w-8 text-blue-600 animate-spin" />
             <span className="ml-2 text-gray-600 dark:text-gray-400">
               {dict?.news?.loading || "Loading latest legal innovation news..."}
             </span>
@@ -296,7 +296,7 @@ const NewsPage = () => {
                     href={article.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center text-sm font-medium text-purple-600 dark:text-purple-400 hover:text-purple-500"
+                    className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-500"
                   >
                     Read full article <ExternalLink className="h-4 w-4 ml-1" />
                   </a>

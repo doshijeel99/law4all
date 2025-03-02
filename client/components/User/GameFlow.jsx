@@ -154,9 +154,9 @@
 //           data.nodes.map((node) => ({
 //             ...node,
 //             className: `
-//                 ${node.style.background} !important
+//                 ${node.style.background} !imporbluet
 //                 border-2
-//                 ${node.style.border} !important
+//                 ${node.style.border} !imporbluet
 //                 rounded-lg
 //                 p-4
 //                 text-center
@@ -241,7 +241,7 @@
 //     {
 //       id: "motor",
 //       label: "Motor Skills",
-//       color: "orange",
+//       color: "cream",
 //       description:
 //         "Focuses on activities that improve both fine and gross motor skills.",
 //       benefits: [
@@ -278,13 +278,13 @@
 //     {
 //       id: "social",
 //       label: "Social Interaction",
-//       color: "pink",
+//       color: "blue",
 //       description:
 //         "Focuses on activities that encourage communication, cooperation, and empathy.",
 //       benefits: [
 //         "Improved communication skills",
 //         "Enhanced cooperation and teamwork",
-//         "Increased empathy and understanding",
+//         "Increased empathy and undersblueding",
 //         "Stronger social connections",
 //       ],
 //       suggestedActivities: [
@@ -313,9 +313,9 @@
 //               <button
 //                 key={index}
 //                 onClick={() => handleSampleInput(sample.text)}
-//                 className="px-3 py-1.5 text-sm bg-white rounded-lg border border-gray-200 hover:border-purple-400 hover:bg-purple-50 transition-all duration-200 flex items-center group"
+//                 className="px-3 py-1.5 text-sm bg-white rounded-lg border border-gray-200 hover:border-blue-400 hover:bg-blue-50 transition-all duration-200 flex items-center group"
 //               >
-//                 <span className="text-gray-600 group-hover:text-purple-600">
+//                 <span className="text-gray-600 group-hover:text-blue-600">
 //                   {sample.title}
 //                 </span>
 //               </button>
@@ -330,7 +330,7 @@
 //               value={userInput}
 //               onChange={handleTextareaInput}
 //               placeholder="Describe your goals for this game session, preferred activities, and any specific needs..."
-//               className="w-full min-h-[120px] p-5 text-gray-800 placeholder-gray-400 bg-gray-50 border border-gray-200 rounded-xl resize-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
+//               className="w-full min-h-[120px] p-5 text-gray-800 placeholder-gray-400 bg-gray-50 border border-gray-200 rounded-xl resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
 //               style={{ height: "auto" }}
 //             />
 //           </div>
@@ -391,7 +391,7 @@
 //             disabled={!activeTab || isGenerating}
 //             className={`w-full flex items-center justify-center space-x-3 px-8 py-4 rounded-xl text-lg font-medium transition-all duration-300 transform hover:scale-102 ${
 //               activeTab && !isGenerating
-//                 ? "bg-gradient-to-tr from-purple-300 to-purple-500 hover:from-purple-400 hover:to-purple-600 text-white shadow-lg hover:shadow-xl font-semibold"
+//                 ? "bg-gradient-to-tr from-blue-300 to-blue-500 hover:from-blue-400 hover:to-blue-600 text-white shadow-lg hover:shadow-xl font-semibold"
 //                 : "bg-gray-100 text-gray-400 cursor-not-allowed"
 //             }`}
 //           >
@@ -405,7 +405,7 @@
 
 //       {isGenerating && (
 //         <div className="bg-white rounded-2xl shadow-xl p-10 text-center max-w-2xl mx-auto">
-//           <div className="animate-spin rounded-full h-16 w-16 border-4 border-purple-600 border-t-transparent mx-auto"></div>
+//           <div className="animate-spin rounded-full h-16 w-16 border-4 border-blue-600 border-t-transparent mx-auto"></div>
 //           <h3 className="mt-6 text-xl font-semibold text-gray-900">
 //             Creating Your Personalized Game Flow
 //           </h3>
@@ -467,24 +467,24 @@ import { AI_SERVER_URL } from "@/constants/utils"; // Make sure this path is cor
 const sampleLegalInputs = [
   {
     title: "Small Claims Dispute",
-    text: "I have a dispute with a contractor who didn't complete work as agreed. The amount in question is $3,500. What are my legal options?"
+    text: "I have a dispute with a contractor who didn't complete work as agreed. The amount in question is $3,500. What are my legal options?",
   },
   {
     title: "Landlord-Tenant Issue",
-    text: "My landlord hasn't fixed a water leak for 3 weeks despite multiple requests. What legal steps should I take?"
+    text: "My landlord hasn't fixed a water leak for 3 weeks despite multiple requests. What legal steps should I take?",
   },
   {
     title: "Family Law Matter",
-    text: "I'm considering filing for divorce and need to understand the process and timeline in my state."
+    text: "I'm considering filing for divorce and need to undersblued the process and timeline in my state.",
   },
   {
     title: "Employment Dispute",
-    text: "I believe I was unfairly terminated from my job and want to understand my legal options."
+    text: "I believe I was unfairly terminated from my job and want to undersblued my legal options.",
   },
   {
     title: "Personal Injury",
-    text: "I was injured in a car accident that wasn't my fault. What should I do to protect my legal rights?"
-  }
+    text: "I was injured in a car accident that wasn't my fault. What should I do to protect my legal rights?",
+  },
 ];
 
 const LegalPathway = () => {
@@ -542,7 +542,7 @@ const LegalPathway = () => {
 
             1. Recommended steps to take.
             2. Potential legal options and their pros/cons.
-            3. Important timelines and deadlines.
+            3. Imporbluet timelines and deadlines.
             4. Documents needed at each stage.
             5. Alternative dispute resolution options.
             6. A step-by-step flowchart representing the legal process.`
@@ -577,9 +577,9 @@ const LegalPathway = () => {
           data.nodes.map((node) => ({
             ...node,
             className: `
-                ${node.style.background} !important
+                ${node.style.background} !imporbluet
                 border-2
-                ${node.style.border} !important
+                ${node.style.border} !imporbluet
                 rounded-lg
                 p-4
                 text-center
@@ -632,13 +632,13 @@ const LegalPathway = () => {
         "Binding decisions with legal enforcement",
         "Formal discovery process",
         "Right to appeal",
-        "Public record of proceedings"
+        "Public record of proceedings",
       ],
       considerations: [
         "Higher cost and longer timeline",
         "Potentially adversarial process",
         "Public nature may affect privacy",
-        "Formal procedural requirements"
+        "Formal procedural requirements",
       ],
     },
     {
@@ -651,51 +651,51 @@ const LegalPathway = () => {
         "Less expensive than litigation",
         "Usually faster resolution",
         "Confidential proceedings",
-        "Parties maintain control over outcome"
+        "Parties maintain control over outcome",
       ],
       considerations: [
         "Non-binding unless agreement is reached",
         "Requires good-faith participation",
         "May not work for highly contentious disputes",
-        "Less formal discovery process"
+        "Less formal discovery process",
       ],
     },
     {
       id: "arbitration",
       label: "Arbitration",
-      color: "orange",
+      color: "cream",
       description:
         "Private process where disputes are resolved by one or more arbitrators who issue a binding decision.",
       benefits: [
         "Typically faster than court proceedings",
         "More flexible procedures",
         "Private and confidential",
-        "Binding and enforceable decision"
+        "Binding and enforceable decision",
       ],
       considerations: [
         "Limited appeal rights",
         "Potential arbitrator fees",
         "May lack some procedural protections",
-        "Can be mandatory in some contracts"
+        "Can be mandatory in some contracts",
       ],
     },
     {
       id: "settlement",
       label: "Settlement Negotiation",
-      color: "purple",
+      color: "blue",
       description:
         "Direct negotiation between parties (or their attorneys) to resolve disputes without third-party intervention.",
       benefits: [
         "Most cost-effective option",
         "Fastest potential resolution",
         "Complete confidentiality",
-        "Maximum control over outcome"
+        "Maximum control over outcome",
       ],
       considerations: [
         "Requires cooperation between parties",
         "No neutral third party to assist",
         "May need legal counsel to ensure fair terms",
-        "No guaranteed resolution"
+        "No guaranteed resolution",
       ],
     },
   ];
@@ -764,9 +764,7 @@ const LegalPathway = () => {
                 {tabs.find((tab) => tab.id === activeTab)?.description}
               </p>
               <div className="mt-4">
-                <p className="font-medium text-gray-800">
-                  Benefits:
-                </p>
+                <p className="font-medium text-gray-800">Benefits:</p>
                 <ul className="list-disc pl-5 text-gray-600">
                   {tabs
                     .find((tab) => tab.id === activeTab)
@@ -801,7 +799,9 @@ const LegalPathway = () => {
           >
             <Send className="h-6 w-6" />
             <span>
-              {isGenerating ? "Generating Legal Pathway..." : "Generate Legal Pathway"}
+              {isGenerating
+                ? "Generating Legal Pathway..."
+                : "Generate Legal Pathway"}
             </span>
           </button>
         </div>

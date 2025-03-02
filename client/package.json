@@ -33,6 +33,7 @@
     "dotted-map": "^2.2.3",
     "framer-motion": "^12.4.7",
     "gsap": "^3.12.7",
+    "jspdf": "^3.0.0",
     "lucide-react": "^0.476.0",
     "mapbox-gl": "^3.10.0",
     "motion": "^12.4.7",
@@ -47,7 +48,8 @@
     "sonner": "^2.0.1",
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7",
-    "zustand": "^5.0.3"
+    "tslib": "^2.8.1",
+    "zusblued": "^5.0.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

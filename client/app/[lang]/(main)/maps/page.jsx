@@ -19,6 +19,17 @@ const Map = () => {
 
   console.log(lng, lat);
 
+  useEffect(()=> {
+    const fetchUser = async () => {
+      const response = await fetch(`http://localhost:4224/api/user/67c3b0bbc16b52bc122972a6`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+    }
+  }, []);
+
   const url = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))?.address?.googleMapLink
     : "";
@@ -89,7 +100,7 @@ const Map = () => {
 
     // Add NGO markers
     ngos.forEach((ngo) => {
-      const ngoMarker = new mapboxgl.Marker({ color: "#FF5733" }) // Orange color for NGO markers
+      const ngoMarker = new mapboxgl.Marker({ color: "#FF5733" }) // cream color for NGO markers
         .setLngLat([ngo.lng, ngo.lat])
         .setPopup(new mapboxgl.Popup().setHTML(`<h3>${ngo.name}</h3>`))
         .addTo(mapRef.current);

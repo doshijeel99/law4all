@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 
 import voiceRoutes from "./routes/voice.routes.js";
+import userRoutes from "./routes/user.routes.js";
 
 dotenv.config();
 
@@ -33,6 +34,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/voice_command", voiceRoutes);
+app.use("/api/user", userRoutes);
 
 // Initialize socket logic
 // socketHandler(server);

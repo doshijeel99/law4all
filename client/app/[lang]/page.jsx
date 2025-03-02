@@ -25,7 +25,7 @@ import InfiniteCards from "@/components/ui/MovingCards";
 
 const LandingPage = () => {
   return (
-    <div className="min-h-screen overflow-hidden bg-gradient-to-br from-cream-50 to-cream-100 dark:from-orange-900 dark:to-orange-800">
+    <div className="min-h-screen overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100 dark:from-cream-900 dark:to-cream-800">
       <Navbar />
 
       {/* Main content container */}
@@ -43,7 +43,7 @@ const LandingPage = () => {
 
       {/* Wave Section at bottom */}
       <div className="relative z-0">
-        <Waves className="text-golden-200 dark:text-orange-700" />
+        <Waves className="text-blue-200 dark:text-cream-700" />
       </div>
     </div>
   );

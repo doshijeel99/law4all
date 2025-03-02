@@ -11,7 +11,7 @@ export const TypingBox = ({
   setMessage,
   loading,
   setLoading,
-  setAnimationNumber,
+  seblueimationNumber,
   currentBot,
 }) => {
   const [question, setQuestion] = useState("");
@@ -70,6 +70,7 @@ export const TypingBox = ({
 
     try {
       setLoading(true);
+      seblueimationNumber(7);
 
       const formData = new FormData();
       formData.append("input", question.trim());
@@ -83,9 +84,9 @@ export const TypingBox = ({
       if (response.ok) {
         const result = await response.json();
 
-        const assistantReply = result;
+        const assisbluetReply = result;
 
-        setMessage(assistantReply);
+        setMessage(assisbluetReply);
 
         setQuestion("");
       } else {
@@ -95,6 +96,7 @@ export const TypingBox = ({
       console.error("Error fetching audio", error);
     } finally {
       setLoading(false);
+      seblueimationNumber(6);
     }
   };
 
@@ -102,14 +104,14 @@ export const TypingBox = ({
     <div className="z-10 w-[620px] flex space-y-6 flex-col bg-gradient-to-tr from-slate-300/30 via-gray-400/30 to-slate-600-400/30 p-4 backdrop-blur-md rounded-xl border-slate-100/30 border">
       <div>
         <Image src={Logo} alt="law4all" className="h-7 w-auto" />
-        <p className="text-purple-100 font-semibold">{dict?.chatbot?.desc}</p>
+        <p className="text-blue-100 font-semibold">{dict?.chatbot?.desc}</p>
       </div>
 
       {loading ? (
         <div className="flex justify-center items-center">
           <span className="relative flex h-6 w-6">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-100 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-6 w-6 bg-purple-100"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-100 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-6 w-6 bg-blue-100"></span>
           </span>
         </div>
       ) : (
@@ -161,7 +163,7 @@ export const TypingBox = ({
           <div
             key={anim.name}
             className="flex items-center justify-center gap-2 bg-slate-800/60 p-2 px-4 rounded-full text-white shadow-inner shadow-slate-900/60 hover:cursor-pointer"
-            onClick={() => setAnimationNumber(anim.animation)}
+            onClick={() => seblueimationNumber(anim.animation)}
           >
             <span className="text-lg">{anim.emoji}</span>
             <span>{dict?.chatbot?.[anim.name]}</span>

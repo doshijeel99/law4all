@@ -21,8 +21,8 @@ function Beams() {
     "rotate(-5deg) translate(150px)",
   ];
   return (
-    <BackgroundBeamsWithCollision className="h-screen flex-col gap-20 dark:bg-tan-500">
-      <h2 className="text-xl w-full max-w-7xl relative z-20 md:text-4xl lg:text-7xl font-bold text-center text-golden-300 dark:text-cream font-sans tracking-tight">
+    <BackgroundBeamsWithCollision className="h-screen flex-col gap-20 dark:bg-blue-500">
+      <h2 className="text-xl w-full max-w-7xl relative z-20 md:text-4xl lg:text-7xl font-bold text-center text-blue-300 dark:text-blue font-sans tracking-tight">
         This is a Demo Template for a Next.js project.{" "}
         <Cover>Tagline Here </Cover>
       </h2>

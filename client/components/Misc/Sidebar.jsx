@@ -17,13 +17,13 @@ const Sidebar = () => {
   return (
     <div className="relative h-screen max-md:hidden">
       <div
-        className={`absolute inset-0 bg-gradient-to-br from-cream-500/70 to-cream-300/70 opacity-50 blur-lg -z-10 ${
+        className={`absolute inset-0 bg-gradient-to-br from-blue-500/70 to-blue-300/70 opacity-50 blur-lg -z-10 ${
           sidebarState ? "w-[17rem]" : "w-20"
         }`}
       />
 
       <div
-        className={`h-screen flex flex-col justify-between py-4 bg-cream-100 backdrop-blur-lg ${
+        className={`h-screen flex flex-col justify-between py-4 bg-blue-250 backdrop-blur-lg ${
           sidebarState ? "w-[17rem] px-2" : "w-20 px-0.5"
         } shadow-xl`}
       >
@@ -40,7 +40,7 @@ const Sidebar = () => {
             {sidebarData.map((category, index) => (
               <div key={index} className="mb-4">
                 {sidebarState && (
-                  <p className="text-sm font-semibold text-cream-800 uppercase mb-3">
+                  <p className="text-sm font-semibold text-blue-800 uppercase mb-3">
                     {dict?.sidebar?.[category.category] || category.category}
                   </p>
                 )}
@@ -53,7 +53,7 @@ const Sidebar = () => {
                     >
                       <Link
                         href={`/${currentLang}${item.route}`}
-                        className={`flex items-center gap-3 text-golden-500 hover:text-golden-400 hover:font-medium transition ${
+                        className={`flex items-center gap-3 text-blue-500 hover:text-blue-400 hover:font-medium transition ${
                           sidebarState ? "pl-2" : "w-14 justify-center"
                         }`}
                       >
@@ -97,10 +97,10 @@ const Sidebar = () => {
 
             {sidebarState && (
               <div className="flex flex-col justify-center items-start ml-3">
-                <h1 className="text-cream-500 font-semibold">
+                <h1 className="text-blue-500 font-semibold">
                   {user?.fullName || "User"}
                 </h1>
-                <h3 className="text-[0.75rem] text-tan-600 -mt-0.5 font-medium">
+                <h3 className="text-[0.75rem] text-blue-600 -mt-0.5 font-medium">
                   {user?.primaryEmailAddress?.emailAddress || "User email"}
                 </h3>
               </div>

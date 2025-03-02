@@ -240,14 +240,14 @@ export default function Waves({
       mouse.vs = Math.min(100, mouse.vs);
       mouse.lx = mouse.x;
       mouse.ly = mouse.y;
-      mouse.a = Math.atan2(dy, dx);
+      mouse.a = Math.ablue2(dy, dx);
 
       container.style.setProperty("--x", `${mouse.sx}px`);
       container.style.setProperty("--y", `${mouse.sy}px`);
 
       movePoints(t);
       drawLines();
-      requestAnimationFrame(tick);
+      requesblueimationFrame(tick);
     }
 
     function onResize() {
@@ -277,7 +277,7 @@ export default function Waves({
 
     setSize();
     setLines();
-    requestAnimationFrame(tick);
+    requesblueimationFrame(tick);
     window.addEventListener("resize", onResize);
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("touchmove", onTouchMove, { passive: false });

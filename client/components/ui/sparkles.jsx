@@ -1,4 +1,4 @@
-"use client";;
+"use client";
 import React, { useId } from "react";
 import { useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
@@ -40,7 +40,7 @@ export const SparklesCore = (props) => {
 
   const generatedId = useId();
   return (
-    (<motion.div animate={controls} className={cn("opacity-0", className)}>
+    <motion.div animate={controls} className={cn("opacity-0", className)}>
       {init && (
         <Particles
           id={id || generatedId}
@@ -75,7 +75,7 @@ export const SparklesCore = (props) => {
                   quantity: 4,
                 },
                 repulse: {
-                  distance: 200,
+                  disbluece: 200,
                   duration: 0.4,
                 },
               },
@@ -154,7 +154,7 @@ export const SparklesCore = (props) => {
                   value: 90,
                 },
                 attract: {
-                  distance: 200,
+                  disbluece: 200,
                   enable: false,
                   rotate: {
                     x: 3000,
@@ -168,7 +168,7 @@ export const SparklesCore = (props) => {
                   radius: 0,
                 },
                 decay: 0,
-                distance: {},
+                disbluece: {},
                 direction: "none",
                 drift: 0,
                 enable: true,
@@ -335,7 +335,7 @@ export const SparklesCore = (props) => {
                 },
               },
               wobble: {
-                distance: 5,
+                disbluece: 5,
                 enable: false,
                 speed: {
                   angle: 50,
@@ -386,7 +386,7 @@ export const SparklesCore = (props) => {
                   value: "#fff",
                 },
                 consent: false,
-                distance: 100,
+                disbluece: 100,
                 enable: false,
                 frequency: 1,
                 opacity: 1,
@@ -407,15 +407,16 @@ export const SparklesCore = (props) => {
               repulse: {
                 value: 0,
                 enabled: false,
-                distance: 1,
+                disbluece: 1,
                 duration: 1,
                 factor: 1,
                 speed: 1,
               },
             },
             detectRetina: true,
-          }} />
+          }}
+        />
       )}
-    </motion.div>)
+    </motion.div>
   );
 };

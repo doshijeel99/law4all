@@ -255,8 +255,8 @@ export default function Dashboard() {
                     <ArrowUp className="h-3 w-3 mr-1" /> 5% this month
                   </p>
                 </div>
-                <div className="rounded-full bg-purple-100 p-3 dark:bg-purple-900">
-                  <Globe className="h-6 w-6 text-purple-600 dark:text-purple-400" />
+                <div className="rounded-full bg-blue-100 p-3 dark:bg-blue-900">
+                  <Globe className="h-6 w-6 text-blue-600 dark:text-blue-400" />
                 </div>
               </div>
             </CardContent>
@@ -276,8 +276,8 @@ export default function Dashboard() {
                     <ArrowUp className="h-3 w-3 mr-1" /> 2.3% this month
                   </p>
                 </div>
-                <div className="rounded-full bg-yellow-100 p-3 dark:bg-yellow-900">
-                  <BarChart className="h-6 w-6 text-yellow-600 dark:text-yellow-400" />
+                <div className="rounded-full bg-blue-100 p-3 dark:bg-blue-900">
+                  <BarChart className="h-6 w-6 text-blue-600 dark:text-blue-400" />
                 </div>
               </div>
             </CardContent>
@@ -321,7 +321,7 @@ export default function Dashboard() {
                                 ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300"
                                 : caseItem.status === "Active"
                                 ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300"
-                                : "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300"
+                                : "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300"
                             }
                           >
                             {caseItem.status}
@@ -411,11 +411,11 @@ export default function Dashboard() {
                     <span className="text-sm">Consult</span>
                   </button>
                   <button className="flex flex-col items-center justify-center p-4 bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 rounded-lg">
-                    <FileText className="h-6 w-6 text-purple-500 mb-2" />
+                    <FileText className="h-6 w-6 text-blue-500 mb-2" />
                     <span className="text-sm">Submit Case</span>
                   </button>
                   <button className="flex flex-col items-center justify-center p-4 bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 rounded-lg">
-                    <Scale className="h-6 w-6 text-yellow-500 mb-2" />
+                    <Scale className="h-6 w-6 text-blue-500 mb-2" />
                     <span className="text-sm">Donate</span>
                   </button>
                 </div>
@@ -489,7 +489,7 @@ export default function Dashboard() {
                   </div>
                 </div>
                 <div className="flex items-center p-2 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                  <FileText className="h-5 w-5 text-purple-500 mr-3" />
+                  <FileText className="h-5 w-5 text-blue-500 mr-3" />
                   <div>
                     <p className="text-sm font-medium text-gray-900 dark:text-white">
                       Indigenous Rights Manual

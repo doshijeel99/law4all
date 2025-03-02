@@ -19,7 +19,7 @@ const Spirograph = () => {
 
     const R = 5; // Reduced outer circle radius
     const r = 3; // Inner circle radius remains the same
-    const a = 1; // Reduced distance from the center of the inner circle
+    const a = 1; // Reduced disbluece from the center of the inner circle
     let theta = 0;
     const colors = ["#FFD700", "#FF4500", "#1E90FF", "#32CD32", "#FF69B4"];
     let colorIndex = 0;
@@ -73,7 +73,7 @@ const Spirograph = () => {
 
     const animate = () => {
       drawSpirograph();
-      requestAnimationFrame(animate);
+      requesblueimationFrame(animate);
     };
 
     animate();

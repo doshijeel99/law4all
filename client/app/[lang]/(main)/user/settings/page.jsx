@@ -173,7 +173,7 @@ const ProfilePage = () => {
                 </span>
               </div>
               <p className="text-xs text-gray-500 mt-1">
-                Email cannot be changed. Contact support for assistance.
+                Email cannot be changed. Contact support for assisbluece.
               </p>
             </div>
             <div className="relative">
@@ -254,7 +254,7 @@ const ProfilePage = () => {
           </div>
         </div>
 
-        <div className="mt-8 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-xl p-6">
+        <div className="mt-8 bg-gradient-to-r from-indigo-50 to-blue-50 dark:from-indigo-900/20 dark:to-blue-900/20 rounded-xl p-6">
           <div className="flex items-center mb-4">
             <Award className="h-6 w-6 text-indigo-600 dark:text-indigo-400 mr-2" />
             <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
@@ -378,10 +378,10 @@ const ProfilePage = () => {
   const renderSecuritySection = () => {
     return (
       <div className="space-y-6">
-        <div className="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-lg">
+        <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
           <div className="flex items-center">
-            <Shield className="h-5 w-5 text-yellow-600 dark:text-yellow-400 mr-2" />
-            <span className="text-sm text-yellow-800 dark:text-yellow-200">
+            <Shield className="h-5 w-5 text-blue-600 dark:text-blue-400 mr-2" />
+            <span className="text-sm text-blue-800 dark:text-blue-200">
               Two-factor authentication is enabled
             </span>
           </div>
