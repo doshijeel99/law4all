@@ -274,6 +274,7 @@ async def analyze_document(file: UploadFile = File(...)):
     
     return AnalysisResponse(summary=summary, final_analysis=final_analysis)
 
+
 def initialize_driver():
     global driver
     chrome_options = Options()
