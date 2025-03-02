@@ -461,8 +461,8 @@ import {
   addEdge,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-import { Send } from "lucide-react";
-import { AI_SERVER_URL } from "@/constants/utils"; // Make sure this path is correct
+import { Send, CheckCircle, Calendar, FileText } from "lucide-react";
+import { AI_SERVER_URL } from "@/constants/utils";
 
 const sampleLegalInputs = [
   {
@@ -475,11 +475,11 @@ const sampleLegalInputs = [
   },
   {
     title: "Family Law Matter",
-    text: "I'm considering filing for divorce and need to undersblued the process and timeline in my state.",
+    text: "I'm considering filing for divorce and need to understand the process and timeline in my state.",
   },
   {
     title: "Employment Dispute",
-    text: "I believe I was unfairly terminated from my job and want to undersblued my legal options.",
+    text: "I believe I was unfairly terminated from my job and want to understand my legal options.",
   },
   {
     title: "Personal Injury",
@@ -550,7 +550,6 @@ const LegalPathway = () => {
 
       formData.append("legalArea", activeTab);
 
-      // Check if AI_SERVER_URL is defined before making the request
       if (!AI_SERVER_URL) {
         console.error(
           "AI_SERVER_URL is not defined. Please set it in your environment."
@@ -612,7 +611,6 @@ const LegalPathway = () => {
         }, 100);
       } else {
         console.warn("Invalid server response:", data);
-        // Handle the case where the response is not in the expected format
       }
     } catch (error) {
       console.error("Error generating pathway:", error);
@@ -699,6 +697,55 @@ const LegalPathway = () => {
       ],
     },
   ];
+
+  // Legal Timeline Component
+  const LegalTimeline = ({ timeline }) => {
+    return (
+      <div className="bg-white rounded-2xl shadow-xl p-6 space-y-4">
+        <div className="flex items-center space-x-3">
+          <Calendar className="h-6 w-6 text-blue-600" />
+          <h3 className="text-xl font-bold text-gray-900">Legal Timeline</h3>
+        </div>
+        <div className="space-y-4">
+          {timeline.map((item, index) => (
+            <div key={index} className="flex items-start space-x-4">
+              <div className="flex-shrink-0 w-6 h-6 bg-blue-50 rounded-full flex items-center justify-center">
+                <span className="text-sm font-medium text-blue-600">
+                  {index + 1}
+                </span>
+              </div>
+              <div className="flex-1">
+                <p className="text-gray-800 font-medium">{item.title}</p>
+                <p className="text-gray-600 text-sm">{item.description}</p>
+                <p className="text-gray-500 text-xs mt-1">{item.date}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  // Document Checklist Component
+  const DocumentChecklist = ({ documents }) => {
+    return (
+      <div className="bg-white rounded-2xl shadow-xl p-6 space-y-4">
+        <div className="flex items-center space-x-3">
+          <FileText className="h-6 w-6 text-green-600" />
+          <h3 className="text-xl font-bold text-gray-900">Document Checklist</h3>
+        </div>
+        <div className="space-y-3">
+          {documents.map((doc, index) => (
+            <div key={index} className="flex items-center space-x-3">
+              <CheckCircle className="h-5 w-5 text-green-500" />
+              <p className="text-gray-800">{doc.name}</p>
+              <span className="text-sm text-gray-500">{doc.status}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="mx-auto space-y-8 py-2 pr-2">
@@ -844,6 +891,42 @@ const LegalPathway = () => {
                 <Controls />
               </ReactFlow>
             </div>
+          </div>
+
+          {/* Legal Timeline and Document Checklist Components */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <LegalTimeline
+              timeline={[
+                {
+                  title: "Initial Consultation",
+                  description: "Meet with your attorney to discuss your case.",
+                  date: "2023-10-15",
+                },
+                {
+                  title: "Filing of Complaint",
+                  description: "Submit the legal complaint to the court.",
+                  date: "2023-10-30",
+                },
+                {
+                  title: "Discovery Phase",
+                  description: "Exchange of information between parties.",
+                  date: "2023-11-15",
+                },
+                {
+                  title: "Trial Date",
+                  description: "Court hearing for the case.",
+                  date: "2024-01-10",
+                },
+              ]}
+            />
+            <DocumentChecklist
+              documents={[
+                { name: "Contract Agreement", status: "Submitted" },
+                { name: "Medical Records", status: "Pending" },
+                { name: "Witness Statements", status: "Not Started" },
+                { name: "Financial Documents", status: "In Progress" },
+              ]}
+            />
           </div>
         </div>
       )}
