@@ -6,7 +6,6 @@ import Image from "next/image";
 import { Logo } from "@/public/images";
 import { CHATBOT_ROUTE } from "@/constants/utils";
 import { useChatbot } from "@/context/ChatbotContext";
-import axios from "axios";
 
 export const TypingBox = ({
   setMessage,
@@ -87,6 +86,7 @@ export const TypingBox = ({
 
       if (response.ok) {
         const result = await response.json();
+        console.log("result", result);
 
         const assisbluetReply = result;
 
