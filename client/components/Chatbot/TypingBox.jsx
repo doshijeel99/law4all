@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Logo } from "@/public/images";
 import { CHATBOT_ROUTE } from "@/constants/utils";
 import { useChatbot } from "@/context/ChatbotContext";
+import axios from "axios";
 
 export const TypingBox = ({
   setMessage,
@@ -72,14 +73,17 @@ export const TypingBox = ({
       setLoading(true);
       seblueimationNumber(7);
 
-      const formData = new FormData();
-      formData.append("input", question.trim());
-      formData.append("type", currentBot);
+      let formData = {};
+      formData["query"] = question.trim();
 
       const response = await fetch(CHATBOT_ROUTE, {
         method: "POST",
-        body: formData,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
+      console.log("formData", formData);
 
       if (response.ok) {
         const result = await response.json();

@@ -1,4 +1,5 @@
 import User from "../models/user.model.js";
+import { encryptObject } from "../helpers/security.helper.js";
 
 export const createUser = async (req, res) => {
   try {
@@ -17,6 +18,17 @@ export const createUser = async (req, res) => {
         .status(400)
         .json({ error: "First name, last name, and email are required." });
     }
+
+    // const encryptedPersonalDetails = {
+    //   firstName: encryptObject(personalDetails.firstName),
+    //   lastName: encryptObject(personalDetails.lastName),
+    //   email: encryptObject(personalDetails.email),
+    //   phone: encryptObject(personalDetails.phone),
+    //   dateOfBirth: encryptObject(personalDetails.date),
+    //   gender: encryptObject(personalDetails.gender),
+    //   occupation: encryptObject(personalDetails.occupation),
+    //   nationality: encryptObject(personalDetails.nationality),
+    // };
 
     // Check if user already exists
     const existingUser = await User.findOne({

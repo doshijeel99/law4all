@@ -28,7 +28,10 @@ const Sidebar = () => {
         } shadow-xl`}
       >
         <div className="flex flex-col justify-start items-start">
-          <div className="flex justify-between items-center mb-2" id="step1">
+          <div
+            className="flex justify-center ml-2 items-center mb-2"
+            id="step1"
+          >
             <Image
               src={Logo}
               alt="law4all Logo"

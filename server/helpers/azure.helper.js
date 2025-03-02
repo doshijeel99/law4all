@@ -1,21 +1,21 @@
-import { BlobServiceClient } from "@blue/storage-blob";
+import { BlobServiceClient } from "@azure/storage-blob";
 import dotenv from "dotenv";
 import mime from "mime-types";
 import path from "path";
 
 dotenv.config();
 
-const blue_STORAGE_CONNECTION_STRING =
-  process.env.blue_STORAGE_CONNECTION_STRING;
+const azure_STORAGE_CONNECTION_STRING =
+  process.env.azure_STORAGE_CONNECTION_STRING;
 
-if (!blue_STORAGE_CONNECTION_STRING) {
+if (!azure_STORAGE_CONNECTION_STRING) {
   throw new Error(
-    "Missing blue_STORAGE_CONNECTION_STRING in environment variables"
+    "Missing azure_STORAGE_CONNECTION_STRING in environment variables"
   );
 }
 
 /**
- * Sanitizes a filename to be valid for blue Blob Storage.
+ * Sanitizes a filename to be valid for azure Blob Storage.
  * @param {string} filename - The original filename.
  * @returns {string} - The sanitized filename.
  */
@@ -37,14 +37,14 @@ const sanitizeFileName = (filename) => {
 };
 
 /**
- * Uploads a file buffer to blue Blob Storage.
- * @param {string} containerName - The name of the blue Storage container.
+ * Uploads a file buffer to azure Blob Storage.
+ * @param {string} containerName - The name of the azure Storage container.
  * @param {Buffer} fileBuffer - The file data buffer.
  * @param {string} originalName - The original filename.
  * @returns {Promise<string>} - The file URL.
  * @throws {Error} - If the upload fails.
  */
-export const blueFileUploader = async (
+export const azureFileUploader = async (
   containerName,
   fileBuffer,
   originalName
@@ -63,7 +63,7 @@ export const blueFileUploader = async (
 
   try {
     const blobServiceClient = BlobServiceClient.fromConnectionString(
-      blue_STORAGE_CONNECTION_STRING
+      azure_STORAGE_CONNECTION_STRING
     );
     const containerClient = blobServiceClient.getContainerClient(containerName);
 
@@ -88,20 +88,20 @@ export const blueFileUploader = async (
 
     return blockBlobClient.url;
   } catch (error) {
-    console.error(`Error in blueFileUploader: ${error.message}`);
+    console.error(`Error in azureFileUploader: ${error.message}`);
     throw new Error(`File upload failed: ${error.message}`);
   }
 };
 
 /**
- * Downloads a file from an blue Blob Storage container.
- * @param {string} containerName - The name of the blue Storage container.
- * @param {string} blobName - The name of the blob (file) in blue Storage.
+ * Downloads a file from an azure Blob Storage container.
+ * @param {string} containerName - The name of the azure Storage container.
+ * @param {string} blobName - The name of the blob (file) in azure Storage.
  * @param {string} downloadFilePath - The local file path where the downloaded file should be saved.
  * @returns {Promise<boolean>} - Returns true if the download was successful.
  * @throws {Error} - If the download fails.
  */
-export const blueFileDownloader = async (
+export const azureFileDownloader = async (
   containerName,
   blobName,
   downloadFilePath
@@ -114,7 +114,7 @@ export const blueFileDownloader = async (
 
   try {
     const blobServiceClient = BlobServiceClient.fromConnectionString(
-      blue_STORAGE_CONNECTION_STRING
+      azure_STORAGE_CONNECTION_STRING
     );
     const containerClient = blobServiceClient.getContainerClient(containerName);
     const blockBlobClient = containerClient.getBlockBlobClient(blobName);
@@ -131,7 +131,7 @@ export const blueFileDownloader = async (
 
     return true;
   } catch (error) {
-    console.error(`Error in blueFileDownloader: ${error.message}`);
+    console.error(`Error in azureFileDownloader: ${error.message}`);
     throw new Error(`File download failed: ${error.message}`);
   }
 };

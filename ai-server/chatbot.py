@@ -3,6 +3,7 @@ import json
 import re
 import logging
 from fastapi import FastAPI, HTTPException, Body
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Dict, List, Optional, Any
 from langchain_groq import ChatGroq
@@ -29,6 +30,14 @@ logger = logging.getLogger("LegalChatbot")
 load_dotenv()
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Pydantic models
 class LegalQuery(BaseModel):
