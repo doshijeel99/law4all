@@ -22,7 +22,7 @@ export const TypingBox = ({
 
   const AnimationTypes = {
     idle: { animation: 6, name: "idle", emoji: "👤" },
-    wave: { animation: 7, name: "think", emoji: "🤔" },
+    suite: { animation: 5, name: "suite", emoji: "👨🏼‍💼" },
   };
 
   useEffect(() => {

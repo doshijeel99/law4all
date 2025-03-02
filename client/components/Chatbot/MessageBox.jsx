@@ -1,12 +1,69 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { Logo } from "@/public/images";
+import {
+  ThumbsUp,
+  ThumbsDown,
+  MessageSquare,
+  AlertTriangle,
+  CheckCircle2,
+} from "lucide-react";
 
-const MessageBox = ({ message }) => {
+const MessageBox = ({ message, messageId }) => {
+  const [feedbackType, setFeedbackType] = useState(null);
+  const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
+
+  const handleFeedbackSubmit = (type) => {
+    // Here you would typically send the feedback to your backend
+    console.log({
+      messageId,
+      feedbackType: type,
+      timestamp: new Date().toISOString(),
+    });
+
+    setFeedbackType(type);
+    setFeedbackSubmitted(true);
+
+    // Reset after delay if needed
+    // setTimeout(() => {
+    //   setFeedbackSubmitted(false);
+    //   setFeedbackType(null);
+    // }, 5000);
+  };
+
+  const feedbackOptions = [
+    {
+      id: "helpful",
+      icon: <ThumbsUp className="w-4 h-4" />,
+      label: "Helpful",
+      color: "bg-green-100 hover:bg-green-200 text-green-700 border-green-200",
+    },
+    {
+      id: "not_helpful",
+      icon: <ThumbsDown className="w-4 h-4" />,
+      label: "Not Helpful",
+      color: "bg-red-100 hover:bg-red-200 text-red-700 border-red-200",
+    },
+    {
+      id: "confusing",
+      icon: <MessageSquare className="w-4 h-4" />,
+      label: "Confusing",
+      color:
+        "bg-yellow-100 hover:bg-yellow-200 text-yellow-700 border-yellow-200",
+    },
+    {
+      id: "incorrect",
+      icon: <AlertTriangle className="w-4 h-4" />,
+      label: "Incorrect",
+      color:
+        "bg-orange-100 hover:bg-orange-200 text-orange-700 border-orange-200",
+    },
+  ];
+
   const formatMessage = (text) => {
     if (!text) return null;
 
@@ -142,6 +199,48 @@ const MessageBox = ({ message }) => {
     );
   };
 
+  const renderFeedbackUI = () => {
+    if (feedbackSubmitted) {
+      return (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="flex items-center justify-center py-3 mt-4 bg-green-50 rounded-lg border border-green-200"
+        >
+          <div className="flex items-center gap-2 text-green-600">
+            <CheckCircle2 className="w-5 h-5" />
+            <span className="font-medium">Thank you for your feedback!</span>
+          </div>
+        </motion.div>
+      );
+    }
+
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="mt-6 border-t border-gray-200 pt-4"
+      >
+        <div className="text-sm text-gray-500 mb-2">
+          Was this response helpful?
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {feedbackOptions.map((option) => (
+            <button
+              key={option.id}
+              onClick={() => handleFeedbackSubmit(option.id)}
+              className={`${option.color} px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1 transition-all duration-200 border`}
+            >
+              {option.icon}
+              {option.label}
+            </button>
+          ))}
+        </div>
+      </motion.div>
+    );
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
@@ -168,7 +267,10 @@ const MessageBox = ({ message }) => {
           </div>
         ) : (
           <ScrollArea className="h-full w-full p-6 rounded-lg">
-            {formatMessage(message)}
+            <div>
+              {formatMessage(message)}
+              {message && renderFeedbackUI()}
+            </div>
           </ScrollArea>
         )}
       </Card>

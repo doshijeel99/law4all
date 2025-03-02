@@ -4,7 +4,6 @@
     "user": "User",
     "overview": "Overview",
     "recent": "Recent Activities",
-    "services": "Legal Services",
     "pathway": "Law RoadMap",
     "settings": "Settings",
     "profile": "Profile",
@@ -13,7 +12,9 @@
     "cb": "Bot",
     "ps": "Person",
     "docs": "Legal Documents",
-    "service": "Legal Services"
+    "service": "Legal Services",
+    "maps": "Areas of Legal Clinics",
+    "reports": "Legal Analytics"
   },
   "voice": {
     "start_listening": "Start listening",
@@ -52,6 +53,7 @@
     "person": "Person",
     "idle": "Idle",
     "think": "Thinking...",
+    "suite": "Suite",
     "thumbsup": "Thumbs Up"
   },
   "news": {
