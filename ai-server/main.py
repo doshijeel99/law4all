@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import Dict, List, Optional
 from dotenv import load_dotenv
 from pydantic import BaseModel
+from services.maps_location import extract_coordinates_from_maps_url
 from services.gemini_game_flow import get_gemini_response
 from services.wellness import process_input
 from services.scenariosaga import ScenarioSaga
@@ -240,6 +241,14 @@ async def ai_financial_path(
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Something went wrong: {str(e)}")
 
+@app.post("/extract_coordinates")
+async def extract_coordinates(url: str = Form(...)):
+    """Extracts coordinates from a Google Maps URL."""
+    try:
+        coordinates = await extract_coordinates_from_maps_url(url)
+        return JSONResponse(content=coordinates, status_code=200)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"An error occurred: {str(e)}")
 
 @app.post("/ai-chatbot")
 async def ai_chatbot(input: str = Form(...), type: str = Form("chatbot")):

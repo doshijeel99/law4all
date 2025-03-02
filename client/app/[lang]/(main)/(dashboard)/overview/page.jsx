@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import WorldMap from "@/components/ui/world-map";
 import { motion } from "motion/react";
 import {
@@ -86,6 +86,32 @@ export default function Dashboard() {
       location: "Toronto",
     },
   ];
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const response = await fetch(
+        `http://localhost:4224/api/user/67c3b8e23d5886be41f656f5`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        console.error("Failed to fetch user data:", response.status);
+        return;
+      } else {
+        const data = await response.json();
+        console.log(data);
+
+        localStorage.setItem("user", JSON.stringify(data));
+      }
+    };
+
+    fetchUser();
+  }, []);
 
   return (
     <div className="h-screen overflow-y-scroll bg-gray-100 dark:bg-gray-900">

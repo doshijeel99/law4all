@@ -10,7 +10,8 @@ export const createUser = async (req, res) => {
     if (
       !personalDetails?.firstName ||
       !personalDetails?.lastName ||
-      !personalDetails?.email
+      !personalDetails?.email ||
+      !address?.googleMapLink
     ) {
       return res
         .status(400)
