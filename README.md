@@ -8,4 +8,4 @@ AI-powered legal aid platform with multilingual support, legal pathway generatio
 • Case Complexity Roadmaps 🛤️: Crafting step-by-step guides to navigate legal challenges.
 • Active Case Tracking 🔍: Monitoring ongoing cases and curating essential documents for streamlined support.
 
-Video Link: 
+Video Link: https://drive.google.com/file/d/1OSwKpP2JCGzv9vEolAqWEoNI44giJqu_/view?usp=drivesdk
